@@ -16,7 +16,7 @@ stages:
   - deploy_prod
 
 deps:
-  stage: test
+  stage: deps
   cache:
     # Cache dependencies
     key: ${CI_JOB_NAME}
