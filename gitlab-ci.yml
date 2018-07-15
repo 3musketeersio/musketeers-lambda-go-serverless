@@ -1,0 +1,73 @@
+image: flemay/musketeers
+
+# overlay2 provides improved performance for dind
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
+
+stages:
+  - test
+  - build
+  - deploy_dev
+  - deploy_qa
+  - deploy_prod
+
+test:
+  stage: test
+  script:
+    - make deps test
+
+build:
+  stage: build
+  artifacts:
+    paths:
+      - golang_vendor.zip
+      - bin_packages.zip
+    expire_in: 1 month
+  only:
+    - master
+  script:
+    - make build pack
+
+deploy_dev:
+  stage: deploy_dev
+  dependencies:
+    - build
+  script:
+    - make deploy
+  environment:
+    name: DEV
+  only:
+    - master
+  variables:
+    ENV: dev
+
+deploy_qa:
+  stage: deploy_psm
+  when: manual
+  dependencies:
+    - build
+  script:
+    - make deploy
+  environment:
+    name: QA
+  only:
+    - master
+  variables:
+    ENV: qa
+
+deploy_prod:
+  stage: deploy_prod
+  when: manual
+  dependencies:
+    - build
+  script:
+    - make deploy
+  environment:
+    name: PROD
+  only:
+    - master
+  variables:
+    ENV: prod
