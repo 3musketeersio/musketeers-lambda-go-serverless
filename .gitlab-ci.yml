@@ -45,7 +45,7 @@ deploy_dev:
     ENV: dev
 
 deploy_qa:
-  stage: deploy_psm
+  stage: deploy_qa
   when: manual
   dependencies:
     - build
