@@ -9,71 +9,70 @@ ENVFILE ?= .env.template
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application and cleans everything.
 all:
-	ENVFILE=.env.example $(MAKE) envfile deps test build pack clean
+	ENVFILE=.env.example $(MAKE) deps test build pack clean
 .PHONY: all
 
 ##################
 # Public Targets #
 ##################
 
-# envfile creates or overwrites .env with $(ENVFILE)
-envfile:
+# creates .env with $(ENVFILE) if it doesn't exist already
+.env:
 	cp -f $(ENVFILE) .env
 .PHONY: envfile
 
 # deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
-deps:
+deps: .env
 	$(COMPOSE_RUN_GOLANG) make _depsGo
 	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
 .PHONY: deps
 
 # test tests the application
-test: $(GOLANG_DEPS_DIR)
+test: .env $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 # build creates the serverless artifact to be deployed
-build: $(GOLANG_DEPS_DIR)
+build: .env $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _build
 .PHONY: build
 
 # pack zips all binary functions individually and zip the bin dir into 1 artifact
-pack:
+pack: .env
 	$(COMPOSE_RUN_SERVERLESS) make _pack _zipBinPackagesArtifact
 .PHONY: pack
 
 # deploy deploys the serverless artifact
-deploy: $(BIN_DIR)
+deploy: .env $(BIN_DIR)
 	$(COMPOSE_RUN_SERVERLESS) make _deploy
 .PHONY: deploy
 
 # echo calls the echo API endpoint
-echo:
+echo: .env
 	$(COMPOSE_RUN_SERVERLESS) make _echo
 .PHONY: echo
 
 # remove removes the api gateway and the lambda
-remove:
+remove: .env
 	$(COMPOSE_RUN_SERVERLESS) make _remove
 .PHONY: remove
 
 # clean removes build artifacts
 clean: cleanDocker
 	$(COMPOSE_RUN_GOLANG) make _clean
-	$(MAKE) cleanDocker
 .PHONY: clean
 
-cleanDocker:
+cleanDocker: .env
 	docker-compose down --remove-orphans
 .PHONY: cleanDocker
 
 # shellGolang let you run a shell inside a go container
-shellGolang:
+shellGolang: .env
 	$(COMPOSE_RUN_GOLANG) bash
 .PHONY: shellGolang
 
 # shellServerless let you run a shell inside a serverless container
-shellServerless:
+shellServerless: .env
 	$(COMPOSE_RUN_SERVERLESS) bash
 .PHONY: shellServerless
 
@@ -158,5 +157,5 @@ _remove:
 
 # _clean removes folders and files created when building
 _clean:
-	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) bin
+	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) bin .env
 .PHONY: _clean
