@@ -25,7 +25,7 @@ deps:
   artifacts:
     paths:
       - vendor
-  expire_in: 1 week
+    expire_in: 1 week
   script:
     - make deps
 
