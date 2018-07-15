@@ -42,7 +42,7 @@ build:
     - deps
   artifacts:
     paths:
-      - bin_packages.zip
+      - bin
     expire_in: 1 month
   only:
     - master
@@ -64,7 +64,6 @@ deploy_dev:
 
 deploy_qa:
   stage: deploy_qa
-  when: manual
   dependencies:
     - build
   script:
