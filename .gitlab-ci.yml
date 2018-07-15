@@ -61,6 +61,8 @@ deploy_dev:
     - master
   variables:
     ENV: dev
+    ECHO_MESSAGE: dev-musketeers-lambda-go-sls
+    AWS_REGION: ap-southeast-2
 
 deploy_qa:
   stage: deploy_qa
@@ -74,6 +76,8 @@ deploy_qa:
     - master
   variables:
     ENV: qa
+    ECHO_MESSAGE: qa-musketeers-lambda-go-sls
+    AWS_REGION: ap-southeast-2
 
 deploy_prod:
   stage: deploy_prod
@@ -88,3 +92,5 @@ deploy_prod:
     - master
   variables:
     ENV: prod
+    ECHO_MESSAGE: prod-musketeers-lambda-go-sls
+    AWS_REGION: ap-southeast-2
