@@ -8,10 +8,15 @@ services:
     working_dir: /go/src/gitlab.com/flemay/musketeers-lambda-go-sls
 
   serverless:
-    image: amaysim/serverless:1.27.1
+    image: amaysim/serverless:1.49.1
     env_file: .env
     volumes:
       - $HOME/.aws:/root/.aws
       - .:/opt/app
     working_dir: /opt/app
 
+  gauth:
+    image: contino/aws-google-auth:0.0.28
+    env_file: .env
+    volumes:
+      - ~/.aws:/root/.aws
