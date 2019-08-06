@@ -1,6 +1,6 @@
-# musketeers-lambda-go-sls
+# musketeers-lambda-go-serverless
 
-[![pipeline status](https://gitlab.com/3musketeersio/musketeers-lambda-go-sls/badges/master/pipeline.svg)](https://gitlab.com/3musketeersio/musketeers-lambda-go-sls/pipelines)
+[![pipeline status](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/badges/master/pipeline.svg)](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/pipelines)
 
 musketeers-lambda-go-sam is a sample project demonstrating using [3 Musketeers](https://github.com/flemay/three-musketeers) and [GitLab CI/CD](https://about.gitlab.com/features/gitlab-ci-cd/) pipeline as code.
 
