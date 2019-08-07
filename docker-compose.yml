@@ -1,11 +1,11 @@
 version: '3.4'
 services:
   golang:
-    image: lambci/lambda:build-go1.x
+    image: golang:1.12
     env_file: .env
     volumes:
-      - .:/go/src/gitlab.com/flemay/musketeers-lambda-go-sls
-    working_dir: /go/src/gitlab.com/flemay/musketeers-lambda-go-sls
+      - .:/opt/app
+    working_dir: /opt/app
 
   serverless:
     image: amaysim/serverless:1.49.1

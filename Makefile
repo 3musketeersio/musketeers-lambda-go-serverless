@@ -1,7 +1,8 @@
 BIN_DIR = bin
-GOLANG_DEPS_DIR = vendor
+
 COMPOSE_RUN_GOLANG = docker-compose run --rm golang
 COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
+COMPOSE_RUN_AUTH = docker-compose run --rm gauth
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application and cleans everything.
 all:
@@ -78,14 +79,13 @@ shellServerless: envfile
 	$(COMPOSE_RUN_SERVERLESS) bash
 .PHONY: shellServerless
 
+auth: envfile
+	$(COMPOSE_RUN_AUTH)
+.PHONY: auth
+
 ###################
 # Private Targets #
 ###################
-
-# _depsGo installs go dependencies for the project
-_depsGo:
-	dep ensure
-.PHONY: _depsGo
 
 # _test tests the go source
 _test:
@@ -127,5 +127,5 @@ _remove:
 
 # _clean removes folders and files created when building
 _clean:
-	rm -rf .serverless $(GOLANG_DEPS_DIR) bin
+	rm -rf .serverless bin
 .PHONY: _clean

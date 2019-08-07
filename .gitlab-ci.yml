@@ -8,38 +8,19 @@ services:
   - docker:dind
 
 stages:
-  - deps
   - test
   - build
   - deploy_dev
   - deploy_qa
   - deploy_prod
 
-deps:
-  stage: deps
-  cache:
-    # Cache dependencies
-    key: ${CI_JOB_NAME}
-    paths:
-      - vendor
-  artifacts:
-    paths:
-      - vendor
-    expire_in: 1 week
-  script:
-    - make deps
-
 test:
   stage: test
-  dependencies:
-    - deps
   script:
     - make test
 
 build:
   stage: build
-  dependencies:
-    - deps
   artifacts:
     paths:
       - bin
