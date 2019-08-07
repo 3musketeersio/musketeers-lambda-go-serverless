@@ -6,7 +6,7 @@ COMPOSE_RUN_AUTH = docker-compose run --rm gauth
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application and cleans everything.
 all:
-	ENVFILE=.env.example $(MAKE) deps test build pack clean
+	ENVFILE=.env.example $(MAKE) test build pack clean
 .PHONY: all
 
 ##################
