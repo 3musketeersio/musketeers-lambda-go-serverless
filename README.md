@@ -22,8 +22,6 @@ The [3 Musketeers](https://github.com/flemay/three-musketeers) pattern is being 
 ```bash
 # create .env file based on envvars.yml with example values
 $ make envfile
-# install dependencies
-$ make deps
 # test
 $ make test
 # compile the go function and create package for serverless

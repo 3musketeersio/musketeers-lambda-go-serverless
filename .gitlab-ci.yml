@@ -42,7 +42,7 @@ deploy_dev:
     - master
   variables:
     ENV: dev
-    ECHO_MESSAGE: dev-musketeers-lambda-go-sls
+    ECHO_MESSAGE: dev-musketeers-lambda-go-serverless
     AWS_REGION: ap-southeast-2
 
 deploy_qa:
