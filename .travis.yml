@@ -8,7 +8,7 @@ jobs:
     - stage: test
       script: make test
     - stage: build
-      script: make build
+      script: make build pack
     - stage: deploy dev
       if: branch = master
       env:
