@@ -16,7 +16,6 @@ jobs:
         provider: script
         script: make deploy
         skip_cleanup: true
-        if: branch = master
         env:
           - ENV=travis-dev
           - ECHO_MESSAGE=dev-musketeers-lambda-go-serverless
@@ -25,8 +24,9 @@ jobs:
       deploy:
         provider: script
         script: make deploy
+        on:
+          branch: master
         skip_cleanup: true
-        if: branch = master
         env:
           - ENV=travis-qa
           - ECHO_MESSAGE=qa-musketeers-lambda-go-serverless
