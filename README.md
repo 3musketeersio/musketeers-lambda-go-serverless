@@ -2,9 +2,9 @@
 
 [![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
 
-GitLab [![pipeline status](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/badges/master/pipeline.svg)](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/pipelines)
+[![pipeline status](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/badges/master/pipeline.svg)](https://gitlab.com/3musketeersio/musketeers-lambda-go-serverless/pipelines)
 
-Travis [![travis status](https://travis-ci.org/3musketeersio/musketeers-lambda-go-serverless.svg?branch=master)](https://travis-ci.org/3musketeersio/musketeers-lambda-go-serverless)
+[![travis status](https://travis-ci.org/3musketeersio/musketeers-lambda-go-serverless.svg?branch=master)](https://travis-ci.org/3musketeersio/musketeers-lambda-go-serverless)
 
 musketeers-lambda-go-sam is a sample project demonstrating using [3 Musketeers](https://github.com/flemay/three-musketeers) and [GitLab CI/CD](https://about.gitlab.com/features/gitlab-ci-cd/) pipeline as code.
 
