@@ -41,7 +41,7 @@ deploy_dev:
   only:
     - master
   variables:
-    ENV: dev
+    ENV: gitlab-dev
     ECHO_MESSAGE: dev-musketeers-lambda-go-serverless
     AWS_REGION: ap-southeast-2
 
@@ -56,7 +56,7 @@ deploy_qa:
   only:
     - master
   variables:
-    ENV: qa
+    ENV: gitlab-qa
     ECHO_MESSAGE: qa-musketeers-lambda-go-sls
     AWS_REGION: ap-southeast-2
 
@@ -72,6 +72,6 @@ deploy_prod:
   only:
     - master
   variables:
-    ENV: prod
+    ENV: gitlab-prod
     ECHO_MESSAGE: prod-musketeers-lambda-go-sls
     AWS_REGION: ap-southeast-2
