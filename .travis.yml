@@ -9,12 +9,17 @@ jobs:
   include:
     - stage: Test
       script: make test
+    - stage: Build
+      script: make build pack
     - stage: Deploy Dev
-      if: branch = master
-      env:
-        - ENV=travis-dev
-        - ECHO_MESSAGE=dev-musketeers-lambda-go-serverless
-        - AWS_REGION=ap-southeast-2 
-      script: make build pack deploy
+      deploy:
+        provider: script
+        skip_cleanup: true
+        if: branch = master
+        env:
+          - ENV=travis-dev
+          - ECHO_MESSAGE=dev-musketeers-lambda-go-serverless
+          - AWS_REGION=ap-southeast-2 
+        script: make deploy
       # ideally you would store the artifact from `build/pack`
       # and then deploy the same artifact to different environments
